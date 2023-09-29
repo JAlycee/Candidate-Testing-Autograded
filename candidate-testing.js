@@ -13,10 +13,11 @@ let candidateAnswer = " ";
 //TODO: Variables for Part 2
 let questions = [
   "Who was the first American woman in space? " ,
-  "True or false : 5 kilometers == 5000 meters? " , 
+  "True or false: 5 kilometer == 5000 meters? " , 
   "(5 + 3)/2 * 10 = ? " , 
   "Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? ",
-  "What is the minimum crew size for the ISS? "];
+  "What is the minimum crew size for the ISS? "
+];
 
 let correctAnswers = [
 "Sally Ride" ,
@@ -25,7 +26,8 @@ let correctAnswers = [
 "Trajectory" ,
 "3" 
 ];
-let candidateAnswers =[];
+
+let candidateAnswers = [];
 
 
 function askForName() {
@@ -40,19 +42,35 @@ for (let i = 0; i < questions.length; i++) {
     candidateAnswers.push(answer);
   }
 }
+
 function gradeQuiz(candidateAnswers) {
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  if (candidateAnswer === correctAnswer) {
-    console.log(" Congrats! You answered correctly. ");
-  } else {
-    console.log("Sorry, that's not a valid answer.");
-    }
+  //TODO 3.2 use this variable to calculate the candidates score.
+let numCorrect = 0;
 
-let grade;  //TODO 3.2 use this variable to calculate the candidates score.
+for (let i = 0; i < correctAnswers.length; i++) {
+  console.log(`Question ${i + 1}: ${questions[i]}`);
+  console.log(`Your Answer: ${candidateAnswers[i]}`);
+  console.log(`Correct Answer: ${correctAnswers[i]}\n`);
 
-
-  return grade;
+if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()) {
+  numCorrect++;
+  }
 }
+
+let grade = (numCorrect / correctAnswers.length * 100);
+
+console.log(`Candidate Name: ${candidateName}`);
+console.log(`>>> Overall Grade: ${grade}% (${numCorrect} of ${questions.length} correct answers) <<<`);
+
+if (grade >= 80) {
+  console.log(" >>>Status: Passed <<< ");
+} else {
+  console.log(" >>> Status: Failed <<< ");
+}
+return grade;
+}
+
 
 function runProgram() {
   askForName();
